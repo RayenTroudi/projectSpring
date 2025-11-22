@@ -28,5 +28,15 @@ public class ProductController {
     public Product getProductById(@PathVariable Long id) {
         return productRepository.findById(id).orElse(null);
     }
+    @DeleteMapping("/{id}")
+    public void deleteProduct(@PathVariable Long id){
+        productRepository.deleteById(id);
+    }
+
+    @PutMapping("/{id}")
+    public Product updateProduct(@PathVariable Long id, @RequestBody Product product){
+        product.setId(id);
+        return productRepository.save(product);
+    }
 
 }
